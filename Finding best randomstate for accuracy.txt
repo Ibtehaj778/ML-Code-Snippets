@@ -1,0 +1,7 @@
+score = []
+for i in range(2000,5000):
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=i)
+    lg = LinearRegression()
+    pipe = make_pipeline(column_trans,lg)
+    pipe.fit(X_train,y_train)
+    score.append(r2_score(y_test,pipe.predict(X_test)))

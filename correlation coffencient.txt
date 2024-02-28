@@ -1,0 +1,6 @@
+
+data = np.vstack((x,y,z))
+np.corrcoef(data)
+
+
+#returns a 3*3 matrix woth correlation cofficient of each column with other

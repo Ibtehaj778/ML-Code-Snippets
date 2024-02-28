@@ -1,0 +1,14 @@
+import pickle
+pickle.dump(proccessed_data_name.to_dict(),open('Car_Price_Data.pkl','wb'))
+pickle.dump(model_name,open("Car_Price_Predictor.pkl",'wb'))
+
+#this will create two picle files one for model and the other for data
+
+#now
+
+import pickle
+
+data = pickle.load(open('file_path','rb'))
+data = pd.DataFrame(data)
+
+model = pickle.load(open('model_path','rb'))

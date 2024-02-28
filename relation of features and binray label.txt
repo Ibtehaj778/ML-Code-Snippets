@@ -1,0 +1,8 @@
+for features in df.columns[1:]:
+  plt.hist(df[df["label"]==1][features], color='blue', label='gamma', alpha=0.7, density=True)
+  plt.hist(df[df["label"]==0][features], color='red', label='hadron', alpha=0.7, density=True)
+  plt.title(features)
+  plt.ylabel("Probability")
+  plt.xlabel(features)
+  plt.legend()
+  plt.show()

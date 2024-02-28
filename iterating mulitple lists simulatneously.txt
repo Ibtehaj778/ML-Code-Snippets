@@ -1,0 +1,2 @@
+for (man_data,woman_data) in zip(men_columns,women_columns):
+	print(man_data,woman_data)

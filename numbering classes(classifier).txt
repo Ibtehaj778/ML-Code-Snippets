@@ -1,0 +1,7 @@
+Used to number the categories e.g Good, average, bad as 1, 2, 0 or something 
+
+
+from sklearn.preprocessing import LabelEncoder
+encoder = LabelEncoder()
+
+encoder.fit_transform(df["target"])

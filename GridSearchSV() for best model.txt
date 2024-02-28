@@ -1,0 +1,100 @@
+Thos code returns the name of best classifier model and its accuracy
+
+classifiers = [
+    {
+        'classifier': RandomForestClassifier(),
+        'params': {
+            'n_estimators': [10, 50, 100],
+            'max_depth': [None, 10, 20]
+        }
+    },
+    {
+        'classifier': SVC(),
+        'params': {
+            'C': [1, 10, 100],
+            'kernel': ['linear', 'rbf']
+        }
+    },
+    {
+        'classifier': LogisticRegression(),
+        'params': {
+            'C': [1, 10, 100],
+            'solver': ['liblinear', 'lbfgs']
+        }
+    }
+]
+
+best_model = None
+best_accuracy = 0
+
+# Iterate through classifiers and find the best one
+for classifier in classifiers:
+    clf = classifier['classifier']
+    param_grid = classifier['params']
+
+    grid_search = GridSearchCV(clf, param_grid, cv=5, scoring='accuracy')
+    grid_search.fit(X_train, y_train)
+
+    y_pred = grid_search.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+
+    if accuracy > best_accuracy:
+        best_accuracy = accuracy
+        best_model = grid_search.best_estimator_
+
+print("Best Classifier:", best_model)
+print("Best Accuracy:", best_accuracy)
+
+
+
+
+
+
+
+
+#now for best regression model
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.svm import SVR
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+regressors = [
+    {
+        'regressor': RandomForestRegressor(),
+        'params': {
+            'n_estimators': [10, 50, 100],
+            'max_depth': [None, 10, 20]
+        }
+    },
+    {
+        'regressor': SVR(),
+        'params': {
+            'C': [1, 10, 100],
+            'kernel': ['linear', 'rbf']
+        }
+    },
+    {
+        'regressor': LinearRegression(),
+        'params': {}
+    }
+]
+
+best_regressor = None
+best_rmse = float('inf')
+
+# Iterate through regressors and find the best one
+for regressor in regressors:
+    reg = regressor['regressor']
+    param_grid = regressor['params']
+
+    grid_search = GridSearchCV(reg, param_grid, cv=5, scoring='neg_mean_squared_error')
+    grid_search.fit(X_train, y_train)
+
+    y_pred = grid_search.predict(X_test)
+    rmse = mean_squared_error(y_test, y_pred, squared=False)
+
+    if rmse < best_rmse:
+        best_rmse = rmse
+        best_regressor = grid_search.best_estimator_
+
+print("Best Regressor:", best_regressor)
+print("Best RMSE:", best_rmse)

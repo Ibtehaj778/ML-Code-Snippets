@@ -1,0 +1,5 @@
+#how to divide columns in 2 categories
+men_columns = df2.columns[df2.columns.str.startswith('men')]
+women_columns = df2.columns[df2.columns.str.startswith('women')]
+
+

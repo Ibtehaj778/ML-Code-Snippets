@@ -1,0 +1,7 @@
+import random
+def EvenlyDistribute(self):
+        negative = list(filter(lambda x: x.sentiment=="NEGATIVE",self.reviews))
+        positive = list(filter(lambda x: x.sentiment=="POSITIVE",self.reviews))
+        positive_shrunk = positive[:len(negative)]
+        self.reviews = negative+positive_shrunk
+        random.shuffle(self.reviews)

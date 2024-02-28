@@ -1,0 +1,2 @@
+ from sklearn.metrics import classification_report
+print(classification_report(test_y,y_pred))

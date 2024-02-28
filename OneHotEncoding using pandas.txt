@@ -1,0 +1,3 @@
+
+
+pd.getdummies(df, df[col_name])

@@ -1,0 +1,19 @@
+from imblearn.over_sampling import RandomOverSampler
+
+def Scaling_Suffle(dataframe, oversampling=False):
+    X = dataframe[dataframe.columns[:-1]].values
+    y = dataframe[dataframe.columns[-1]].values
+    
+    scaler = StandardScaler()
+    X = scaler.fit_transform(X)
+    if oversampling:
+        ros = RandomOverSampler()
+        X,y = ros.fit_resample(X,y)
+    data = np.hstack((X,np.reshape(y,(len(y),1))))#horizontal stack np method. reshape because y was a 1D array while X was 2D
+    #So we had to make y as 2D by making rows to the len(y) and cols = 1
+    return data,X,y
+
+
+train,train_X,train_y=Scaling_Suffle(train, oversampling=True)
+
+test,test_X,test_y=Scaling_Suffle(test, oversampling=False)

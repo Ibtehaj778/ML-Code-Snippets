@@ -1,0 +1,1 @@
+first_data.merge(second_data,on="common_column")
